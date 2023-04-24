@@ -73,13 +73,21 @@ class Script(Base):
     begin_at = Column(DateTime, default=datetime.datetime.now)
 
 
+class Solicitation(Base):
+    __tablename__ = 'SOLICITATIONS'
+    __table_args__ = {'schema': schema}
+
+    id = Column(String, default=lambda: str(uuid4()), primary_key=True)
+    created_at = Column(DateTime, default=datetime.datetime.now)
+    updated_at = Column(DateTime, nullable=True)
+
+
 class Status(Base):
     __tablename__ = 'STATUS'
     __table_args__ = {'schema': schema}
 
     id = Column(String, default=lambda: str(uuid4()), primary_key=True)
     name = Column(String)
-
 
 # Base.metadata.drop_all(create_postgres_engine())
 # Base.metadata.create_all(create_postgres_engine())
