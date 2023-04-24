@@ -18,12 +18,14 @@ PONG
 ````
 
 <h5>Workers</h5>
+
 ````commandline
 celery -A app.celery worker --loglevel=info -P threads
 celery -A app.celery worker -l info --pool=solo
 ````
 
 <h5>Flower</h5>
+
 ````commandline
 celery -A app.celery flower --address=127.0.0.6 --port=5556 
 celery -A app.celery flower --basic_auth=admin:admin --address=127.0.0.6 --port=5556
