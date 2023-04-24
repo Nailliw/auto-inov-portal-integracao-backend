@@ -43,3 +43,23 @@ from celery.result import AsyncResult
 
 task = AsyncResult('deb23a1c-ac84-4a27-b926-14b05c4f2a69')
 ````
+
+<h3>Usando Alembic para Migração do Banco de Dados</h3>
+
+With a basic understanding of what the environment is, we can create one using alembic init. This will create an environment using the “generic” template:
+
+````commandline
+alembic init alembic
+````
+
+<h4>Criar migração:</h4>
+
+````commandline
+alembic revision --autogenerate -m "first database migration"
+````
+
+<h4>Rodar migração:</h4>
+
+````commandline
+alembic upgrade head
+````
