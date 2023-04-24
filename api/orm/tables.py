@@ -1,7 +1,9 @@
 import datetime
+import enum
 from uuid import uuid4
-from sqlalchemy import Column, String, DateTime, ForeignKey, JSON
+from sqlalchemy import Column, String, DateTime, ForeignKey, JSON, Enum
 from sqlalchemy.orm import declarative_base, relationship
+
 
 from api.service.postgres import create_postgres_engine
 
@@ -19,6 +21,7 @@ class User(Base):
     login = Column(String)
     created_at = Column(DateTime, default=datetime.datetime.now)
     updated_at = Column(DateTime, default=datetime.datetime.now)
+    soicitations = relationship("Solicitation", back_populates="USERS")
 
 
 class Application(Base):
@@ -73,21 +76,29 @@ class Script(Base):
     begin_at = Column(DateTime, default=datetime.datetime.now)
 
 
+class SolicitationStatusEnum(enum.Enum):
+    INICIADO = 1
+    ERRO = 2
+    FINALIZADO = 3
+
+
 class Solicitation(Base):
     __tablename__ = 'SOLICITATIONS'
     __table_args__ = {'schema': schema}
 
     id = Column(String, default=lambda: str(uuid4()), primary_key=True)
+    user_id = Column(
+        String,
+        ForeignKey(f"{schema}.USERS.id", ondelete="CASCADE"),
+        nullable=False
+    )
+    users = relationship("Users", back_populates="SOLICITATIONS")
+    username = Column(String, nullable=True)
+    task_id = Column(String, nullable=True)
+    status = Column(Enum(SolicitationStatusEnum), default=SolicitationStatusEnum(1))
     created_at = Column(DateTime, default=datetime.datetime.now)
     updated_at = Column(DateTime, nullable=True)
 
-
-class Status(Base):
-    __tablename__ = 'STATUS'
-    __table_args__ = {'schema': schema}
-
-    id = Column(String, default=lambda: str(uuid4()), primary_key=True)
-    name = Column(String)
 
 # Base.metadata.drop_all(create_postgres_engine())
 # Base.metadata.create_all(create_postgres_engine())

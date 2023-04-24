@@ -7,7 +7,7 @@ from time import sleep
 
 # Application based imports
 from flask import request
-from flask_restx import Namespace, Resource
+from flask_restx import Namespace, Resource, fields
 
 from api import factory
 
@@ -18,6 +18,7 @@ from api.application.systems.controller.controller import SystemsController
 from api.utils.http_response import HttpResponse
 
 api = Namespace(name='', description='Main API namespace.')
+
 
 # Get the celery instance
 celery = factory.celery
@@ -92,18 +93,8 @@ class SistemaResource(Resource):
         ]
 
 
-class SolicitationsResource(Resource):
-    def get(self):
-        controller = SolicitationsController(response=HttpResponse())
-        return controller.get_all_solicitations()
-
-    def post(self):
-        controller = SolicitationsController(response=HttpResponse())
-        return controller.get_all_solicitations()
-
-
 # namespaces
 api.add_resource(SystemsResource, "system")
 api.add_resource(FunctionalitiesResource, "/functionality")
 api.add_resource(SistemaResource, "/system-actions/<system>")
-api.add_resource(SolicitationsResource, "/solicitation")
+
