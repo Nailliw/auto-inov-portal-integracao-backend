@@ -7,13 +7,12 @@ from time import sleep
 
 # Application based imports
 from flask import request
-from flask_restx import Namespace, Resource, fields
+from flask_restx import Namespace, Resource
 
 from api import factory
 
 # Empty name is required to have the desired url path
 from api.application.functionalities.controller.functionalities_controller import FunctionalitiesController
-from api.application.solicitations.controller.solicitations_controller import SolicitationsController
 from api.application.systems.controller.controller import SystemsController
 from api.utils.http_response import HttpResponse
 
