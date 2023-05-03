@@ -9,6 +9,8 @@ from api.config import Config
 
 # Resources based imports
 from api.resources.main import api as main
+from api.resources.payloads import api as ns1
+from api.resources.solicitation_ns import solicitation_ns
 
 blueprint = Blueprint('api', __name__, url_prefix='/api')
 
@@ -20,3 +22,5 @@ api = Api(blueprint,
 
 # Namespaces registration
 api.add_namespace(main, path='')
+api.add_namespace(ns1, path='')
+api.add_namespace(solicitation_ns, path='')

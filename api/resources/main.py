@@ -13,11 +13,11 @@ from api import factory
 
 # Empty name is required to have the desired url path
 from api.application.functionalities.controller.functionalities_controller import FunctionalitiesController
-from api.application.solicitations.controller.solicitations_controller import SolicitationsController
 from api.application.systems.controller.controller import SystemsController
 from api.utils.http_response import HttpResponse
 
 api = Namespace(name='', description='Main API namespace.')
+
 
 # Get the celery instance
 celery = factory.celery
@@ -92,18 +92,8 @@ class SistemaResource(Resource):
         ]
 
 
-class SolicitationsResource(Resource):
-    def get(self):
-        controller = SolicitationsController(response=HttpResponse())
-        return controller.get_all_solicitations()
-
-    def post(self):
-        controller = SolicitationsController(response=HttpResponse())
-        return controller.get_all_solicitations()
-
-
 # namespaces
 api.add_resource(SystemsResource, "system")
 api.add_resource(FunctionalitiesResource, "/functionality")
 api.add_resource(SistemaResource, "/system-actions/<system>")
-api.add_resource(SolicitationsResource, "/solicitation")
+

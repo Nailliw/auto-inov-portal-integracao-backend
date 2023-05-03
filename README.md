@@ -52,6 +52,26 @@ With a basic understanding of what the environment is, we can create one using a
 alembic init alembic
 ````
 
+<h4>Configurar Alembic:</h4>
+Na pasta do alembic, no arquivo env.py é necessário colocar algumas configurações para as migrações funcionarem.
+
+- É necessário determinar a url da conexão com o banco de dados.
+Ex:
+
+    ````python
+    from alembic import context
+    config = context.config
+  
+    db_url = 'postgresql+psycopg2://root:root@localhost:5432/test_db'
+    config.set_main_option('sqlalchemy.url', db_url)
+    ````
+- É necessário definir o caminho do ORM do SqlAlchemy. Ex:
+    
+    ````python
+    from api.orm import tables
+    target_metadata = tables.Base.metadata
+    ````
+
 <h4>Criar migração:</h4>
 
 ````commandline
