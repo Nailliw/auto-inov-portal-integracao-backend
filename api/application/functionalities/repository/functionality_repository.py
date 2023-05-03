@@ -8,3 +8,6 @@ class FunctionalityRepository(AbstractRepository):
 
     def get_functionality(self, model, field):
         return self.session.query(model).filter_by(application_id=field).first()
+
+    def get_funcionalities_by_application_id(self, model, field):
+        return self.session.query(model).filter_by(application_id=field).all()

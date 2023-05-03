@@ -23,21 +23,9 @@ class FunctionalitiesCore:
 
     def verify_system_status(self, ip, system_name):
         date_now = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-        self.ssh = SSH(hostname=ip, username='p686199', password='WH0riZ0N')
+        # self.ssh = SSH(hostname=ip, username='p686199', password='WH0riZ0N')
 
-        return {"name": "system_name", "status": True, "date": date_now}
-
-
-
-    def verify_status_sinep(self, _id):
-        func = self.functionality_repository.get_functionality(model=Functionality, field=_id)
-        if func:
-            return True
-        else:
-            return False
-
-    def verify_status_atm(self):
-        return False
+        return {"name": system_name, "status": True, "date": date_now}
 
     def perform_recycling(self):
         application = self.application_repository.get_application(model=Application, field="SINEP")
