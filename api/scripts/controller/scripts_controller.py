@@ -9,5 +9,11 @@ class ScriptsController:
     def define_application_actions(self):
         application = self.application
 
-        if application == "SINEP":
-            SinepCore().init_action(self.actions)
+        if application.name == "SINEP":
+            SinepCore().init_actions(self.actions)
+
+        if application.name == "SIOPI":
+            SinepCore().init_actions(self.actions)
+
+        if application.name == "SICTD":
+            SinepCore().init_actions(self.actions)

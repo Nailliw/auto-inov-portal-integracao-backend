@@ -1,6 +1,7 @@
 from api import factory
 from api.application.solicitations.controller.serializer import solicitation_serializer, get_all_solicitation
 from api.application.solicitations.core.solicitations_core import SolicitationCore
+from api.scripts.controller.scripts_controller import ScriptsController
 from api.utils.http_response import HttpResponse
 celery = factory.celery
 
@@ -21,6 +22,8 @@ def create_solicitation(payload):
     core = SolicitationCore(payload=payload)
 
     new_solicitation = core.create_solicitation()
-    run_solicitation = core.run_solicitation()
+    application, actions = core.run_solicitation()
+    scripts_controller = ScriptsController(application=application, actions=actions)
+    init_scripts = scripts_controller.define_application_actions()
 
     return solicitation_serializer(new_solicitation)

@@ -29,7 +29,7 @@ class SolicitationsResource(Resource):
         # task = create_solicitation.delay(request.get_json())
 
         task = create_solicitation(request.get_json())
-        return {'task_id': task.id}
+        return {'task_id': "task.id"}
 
 
 solicitation_ns.add_resource(SolicitationsResource, "")

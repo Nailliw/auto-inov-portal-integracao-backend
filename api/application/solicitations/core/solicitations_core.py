@@ -1,5 +1,3 @@
-import pdb
-
 from api.application.functionalities.repository.application_repository import ApplicationRepository
 from api.application.functionalities.repository.functionality_repository import FunctionalityRepository
 from api.application.solicitations.repository.solicitations_repository import SolicitationRepository
@@ -41,7 +39,8 @@ class SolicitationCore:
     def run_solicitation(self):
         system = self._get_application()
         actions = self._get_actions(system.id)
-        pdb.set_trace()
+
+        return system, actions
 
     def _get_application(self):
         application = self.application_repository.get_application(Application, field=self.payload.get("application"))
