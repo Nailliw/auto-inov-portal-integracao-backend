@@ -83,3 +83,8 @@ alembic revision --autogenerate -m "first database migration"
 ````commandline
 alembic upgrade head
 ````
+
+
+
+FLOWER -> http://127.0.0.6:5556/
+RABBITMQ -> http://localhost:8080/

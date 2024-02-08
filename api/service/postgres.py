@@ -5,8 +5,6 @@ from abc import ABC
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-os.environ["AWS_REGION"] = "us-east-1"
-
 
 def create_postgres_engine():
 

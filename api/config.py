@@ -14,7 +14,7 @@ class Config(object):
     VERSION = "0.1.0"
     DESCRIPTION = "An API Skeleton with Celery."
 
-    CELERY_BROKER_URL = "amqp://myuser:mypassword@localhost:5672"
+    CELERY_BROKER_URL = "amqp://guest:guest@localhost:5672"
     CELERY_RESULT_BACKEND = 'rpc://'
     BROKER_URL = CELERY_BROKER_URL
 
